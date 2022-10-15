@@ -17,7 +17,7 @@ def recipes_list(request):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
        
 
-@api_view(['GET', 'PUT'])
+@api_view(['GET', 'PUT', 'DELETE'])
 def recipes_detail(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
     if request.method == 'GET':
@@ -28,3 +28,6 @@ def recipes_detail(request, pk):
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
+    elif request.method == 'DELETE':
+        recipe.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
