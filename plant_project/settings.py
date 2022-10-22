@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'recipes',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -48,8 +49,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
-
+CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'plant_project.urls'
 
 TEMPLATES = [
@@ -122,3 +124,5 @@ try:
     from plant_project.local_settings import *
 except ImportError:
     pass
+
+
